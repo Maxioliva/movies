@@ -11,11 +11,16 @@ export function MovieDetails() {
 
   useEffect(() => {
     setIsLoading(true);
-    setIsLoading(true);
+
     get("/movie/" + movieId).then((data) => {
       setMovie(data);
+      setIsLoading(false);
     });
   }, [movieId]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   if (!movie) {
     return null;
