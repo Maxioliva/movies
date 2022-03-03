@@ -1,26 +1,13 @@
 import styles from "./Search.module.css";
-import { BiSearchAlt } from "react-icons/bi";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useQuery } from "../Hooks/useQuery";
-import { useEffect } from "react";
+import { FaSearch } from "react-icons/fa";
+import { useSearchParams } from "react-router-dom";
 
 export function Search() {
-  const query = useQuery();
-
+  const [query, setQuery] = useSearchParams();
   const search = query.get("search");
-
-  useEffect(() => {
-    setSearchText(search || "");
-  }, [search]);
-
-  const [searchText, setSearchText] = useState("");
-
-  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/?search=" + searchText);
   };
   return (
     <form className={styles.searchContainer} onSubmit={handleSubmit}>
@@ -28,12 +15,18 @@ export function Search() {
         <input
           className={styles.searchInput}
           type="text"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
+          value={search ?? ""}
+          autoFocus
+          placeholder="Title"
+          aria-label="Search Movies"
+          onChange={(e) => {
+            const value = e.target.value;
+
+            setQuery({ search: value });
+            // navigate("/?search=" + value);
+          }}
         />
-        <button className={styles.searchButton} type="submit">
-          <BiSearchAlt size={20} />
-        </button>
+        <FaSearch size={20} color="black" className={styles.searchButton} />
       </div>
     </form>
   );

@@ -1,21 +1,15 @@
-.movieCard {
-  list-style: none;
-  font-size: 1.5rem;
-  text-align: center;
+.spinner {
+  display: flex;
+  justify-content: center;
+  margin: 30px;
 }
 
-.movieCard:hover {
-  opacity: 0.8;
+.spinning {
+  animation: spinner 1s linear infinite;
 }
 
-.movieImage {
-  border-radius: 10px;
-  background-color: azure;
-}
-
-@media (max-width: 560px) {
-  .movieImage {
-    width: 90%;
-    height: auto;
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
   }
 }
