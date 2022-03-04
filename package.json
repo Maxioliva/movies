@@ -1,5 +1,6 @@
 {
   "name": "moviesweb",
+  "homepage": "https://maxioliva.github.io/movies/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
